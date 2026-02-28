@@ -1,10 +1,6 @@
-#!/usr/bin/env bash
-set -euo pipefail
 
-# القيم التالية تأتي من Secrets في GitHub:
-# TELEGRAM_TOKEN  و  TELEGRAM_CHAT_ID
-: "${TELEGRAM_TOKEN:?Missing TELEGRAM_TOKEN}"
-: "${TELEGRAM_CHAT_ID:?Missing TELEGRAM_CHAT_ID}"
+#!/bin/bash
 
-# نص الرسالة
-MESSAGE='لا اله الا انت سبحانك اني كنت من الظالمين
+curl -X POST "https://api.telegram.org/bot$TELEGRAM_TOKEN/sendMessage" \
+  -d "chat_id=$TELEGRAM_CHAT_ID" \
+  -d "text=رسالة تجريبية من GitHub ✅"
