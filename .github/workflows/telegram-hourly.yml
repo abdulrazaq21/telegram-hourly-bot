@@ -1,0 +1,20 @@
+name: Telegram Hourly Message
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 * * * *"   # كل ساعة (UTC)
+
+jobs:
+  send-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Send Telegram message
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          bash .github/scripts/send_telegram.sh
